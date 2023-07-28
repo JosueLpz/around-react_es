@@ -1,11 +1,16 @@
-import "./App.css";
+import header__logo from "./image/header/header__logo.svg";
+import closeIcon from "./image/nav/CloseIcon.svg";
+import editButton from "./image/header/EditButton.svg";
+import addButton from "./image/nav/Addbutton.svg";
+import buttonDelete from "./image/element/ButtonDelete.svg";
+import buttonLike from "./image/element/ButonLike.svg";
 
 function App() {
   return (
     <>
-      <div classNameName="zoom">
+      <div className="zoom">
         <a className="zoom__button-closed root__buttom-closed-active">
-          <img src="<%=require('./image/nav/CloseIcon.svg')%>" alt="ButtonClosed" />
+          <img src={closeIcon} alt="ButtonClosed" />
         </a>
         <div className="zoom__content"></div>
         <img className="zoom__img" alt="" />
@@ -14,7 +19,7 @@ function App() {
       <fieldset className="popup confirm">
         <form className="popup__form popup-confirm">
           <h2 className="popup__form-title confirm-title">¿Estás seguro?</h2>
-          <img className="popup__closed root__buttom-closed-active" src="<%=require('./image/nav/CloseIcon.svg')%>" alt="ButtonClosed" />
+          <img className="popup__closed root__buttom-closed-active" src={closeIcon} alt="ButtonClosed" />
           <button type="submit" className="popup__button confirm-delete">
             Si
           </button>
@@ -23,7 +28,7 @@ function App() {
       <fieldset className="popup avatar">
         <form className="popup__form popup-avatar" name="img" novalidate>
           <h2 className="popup__form-title avatar-title">Cambiar foto de perfil</h2>
-          <img className="popup__closed root__buttom-closed-active" src="<%=require('./image/nav/CloseIcon.svg')%>" alt="ButtonClosed" />
+          <img className="popup__closed root__buttom-closed-active" src={closeIcon} alt="ButtonClosed" />
           <input id="avatar__url" className="popup__input" name="avatar" placeholder="Nuevo avatar" type="url" required />
           <span className="avatar__url-error avatar__container-error"></span>
           <button className="popup__button">Guardar</button>
@@ -32,7 +37,7 @@ function App() {
       <fieldset className="form popup">
         <form className="form__container popup__form" name="profile" novalidate>
           <a className="form__container-closed root__buttom-closed-active popup__closed">
-            <img src="<%=require('./image/nav/CloseIcon.svg')%>" alt="ButtonClosed" />
+            <img src={closeIcon} alt="ButtonClosed" />
           </a>
           <h2 className="form__container-title">Editar perfil</h2>
           <input id="form__title" name="title" type="text" className="form__container-name popup__input" maxlength="40" minlength="2" required />
@@ -47,7 +52,7 @@ function App() {
       <fieldset className="card popup">
         <form className="card__element popup__form" name="card" novalidate>
           <a className="card__element-button-closed root__buttom-closed-active popup__closed">
-            <img src="<%=require('./image/nav/CloseIcon.svg')%>" alt="ButtonClosed" />
+            <img src={closeIcon} alt="ButtonClosed" />
           </a>
           <h2 className="card__element-title">Nuevo lugar</h2>
           <input id="card__title" name="name" placeholder="Titulo" type="text" className="card__element-name-card popup__input" maxlength="30" minlength="2" required />
@@ -61,7 +66,7 @@ function App() {
       </fieldset>
       <div className="page">
         <header className="header">
-          <img className="header__logo" src="<%=require('./image/header/header__logo.svg')%>" alt="logo header" />
+          <img className="header__logo" src={header__logo} alt="logo header" />
           <div className="header__line"></div>
         </header>
         <nav className="profile">
@@ -71,19 +76,19 @@ function App() {
           <div className="profile__row">
             <h1 className="profile__row-name"></h1>
             <a className="profile__row-edit root__button-hover-active">
-              <img src="<%=require('./image/header/EditButton.svg')%>" alt="botonedit" />
+              <img src={editButton} alt="botonedit" />
             </a>
           </div>
           <h2 className="profile__hobbie"></h2>
           <a className="profile__button root__button-hover-active">
-            <img className="profile__button" src="<%=require('./image/nav/Addbutton.svg')%>" alt="BotonAdd" />
+            <img className="profile__button" src={addButton} alt="BotonAdd" />
           </a>
         </nav>
         <main className="element">
           <template id="template__article">
             <article className="element__article">
               <a className="element__article_delete root__button-hover-active">
-                <img src="<%=require('./image/element/ButtonDelete.svg')%>" alt="buttondelete" />
+                <img src={buttonDelete} alt="buttondelete" />
               </a>
               <a className="element__article_img_button">
                 <img className="element__article_img" alt="" />
@@ -91,7 +96,7 @@ function App() {
               <div className="element__article_row">
                 <h2 className="element__article_row_title"></h2>
                 <a className="element__article_row_like root__button-hover-active">
-                  <img src="<%=require('./image/element/ButonLike.svg')%>" alt="buttonlike" />
+                  <img src={buttonLike} alt="buttonlike" />
                 </a>
                 <p className="element__article_row_like_counter"></p>
               </div>
