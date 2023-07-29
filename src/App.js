@@ -1,9 +1,10 @@
-import header__logo from "./image/header/header__logo.svg";
-import closeIcon from "./image/nav/CloseIcon.svg";
-import editButton from "./image/header/EditButton.svg";
-import addButton from "./image/nav/Addbutton.svg";
+import Header from "./components/Header.js";
+import Main from "./components/Main.js";
+import Footer from "./components/Footer.js";
+
 import buttonDelete from "./image/element/ButtonDelete.svg";
 import buttonLike from "./image/element/ButonLike.svg";
+import closeIcon from "./image/nav/CloseIcon.svg";
 
 function App() {
   return (
@@ -65,47 +66,9 @@ function App() {
         </form>
       </fieldset>
       <div className="page">
-        <header className="header">
-          <img className="header__logo" src={header__logo} alt="logo header" />
-          <div className="header__line"></div>
-        </header>
-        <nav className="profile">
-          <div className="profile__content-img">
-            <img className="profile__img profile__img-hover" name="avatar" alt="avatarusuario" />
-          </div>
-          <div className="profile__row">
-            <h1 className="profile__row-name"></h1>
-            <a className="profile__row-edit root__button-hover-active">
-              <img src={editButton} alt="botonedit" />
-            </a>
-          </div>
-          <h2 className="profile__hobbie"></h2>
-          <a className="profile__button root__button-hover-active">
-            <img className="profile__button" src={addButton} alt="BotonAdd" />
-          </a>
-        </nav>
-        <main className="element">
-          <template id="template__article">
-            <article className="element__article">
-              <a className="element__article_delete root__button-hover-active">
-                <img src={buttonDelete} alt="buttondelete" />
-              </a>
-              <a className="element__article_img_button">
-                <img className="element__article_img" alt="" />
-              </a>
-              <div className="element__article_row">
-                <h2 className="element__article_row_title"></h2>
-                <a className="element__article_row_like root__button-hover-active">
-                  <img src={buttonLike} alt="buttonlike" />
-                </a>
-                <p className="element__article_row_like_counter"></p>
-              </div>
-            </article>
-          </template>
-        </main>
-        <footer className="footer">
-          <h2 className="footer__paragrah">&copy; 2023 la Filosofia es Vida</h2>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
       </div>
     </>
   );
