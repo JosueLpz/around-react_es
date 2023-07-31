@@ -1,9 +1,7 @@
-import Header from "./components/Header.js";
-import Main from "./components/Main.js";
-import Footer from "./components/Footer.js";
+import Header from "./components/Header/Header.js";
+import Main from "./components/Main/Main.js";
+import Footer from "./components/Footer/Footer.js";
 
-import buttonDelete from "./image/element/ButtonDelete.svg";
-import buttonLike from "./image/element/ButonLike.svg";
 import closeIcon from "./image/nav/CloseIcon.svg";
 
 function App() {
