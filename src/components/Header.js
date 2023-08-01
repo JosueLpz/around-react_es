@@ -1,6 +1,6 @@
-import header__logo from "../../image/header/header__logo.svg";
-import editButton from "../../image/header/EditButton.svg";
-import addButton from "../../image/nav/Addbutton.svg";
+import header__logo from "../image/header/header__logo.svg";
+import editButton from "../image/header/EditButton.svg";
+import addButton from "../image/nav/Addbutton.svg";
 
 const handleAddPlaceClick = () => {
   document.querySelector(".card").style.display = "block";

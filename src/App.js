@@ -1,7 +1,7 @@
-import Header from "./components/Header/Header.js";
-import Main from "./components/Main/Main.js";
-import Footer from "./components/Footer/Footer.js";
-import PopupWithForm from "./components/PopupWithForm/PopupWithForm.js";
+import Header from "./components/Header.js";
+import Main from "./components/Main.js";
+import Footer from "./components/Footer.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 
 function App() {
   return (

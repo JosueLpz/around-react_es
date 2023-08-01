@@ -1,4 +1,4 @@
-import closeIcon from "../../image/nav/CloseIcon.svg";
+import closeIcon from "../image/nav/CloseIcon.svg";
 
 export default function PopupWithForm(props) {
   return (

@@ -1,5 +1,5 @@
-import buttonDelete from "../../image/element/ButtonDelete.svg";
-import buttonLike from "../../image/element/ButonLike.svg";
+import buttonDelete from "../image/element/ButtonDelete.svg";
+import buttonLike from "../image/element/ButonLike.svg";
 
 function Main() {
   return (
