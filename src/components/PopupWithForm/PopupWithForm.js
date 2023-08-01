@@ -1,10 +1,10 @@
-import closeIcon from "./image/nav/CloseIcon.svg";
+import closeIcon from "../../image/nav/CloseIcon.svg";
 
 export default function PopupWithForm(props) {
   return (
     <>
-      <fieldset className={`popup popup_type_${props.name}`}>
-        <form className={`form form_type_${props.name}`} name={props.name} novalidate>
+      <fieldset className={`popup ${props.name}`}>
+        <form className={`form__container popup__${props.name}`} name={props.name} novalidate>
           <a className="form__container-closed root__buttom-closed-active popup__closed">
             <img src={closeIcon} alt="ButtonClosed" />
           </a>
