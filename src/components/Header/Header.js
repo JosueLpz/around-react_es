@@ -2,9 +2,17 @@ import header__logo from "../../image/header/header__logo.svg";
 import editButton from "../../image/header/EditButton.svg";
 import addButton from "../../image/nav/Addbutton.svg";
 
-import handleEditProfileClick from "../Main/handleEditProfileClick.js";
-import handleEditAvatarClick from "../Main/handleEditAvatarClick";
-import handleAddPlaceClick from "../Main/handleAddPlaceClick.js";
+const handleAddPlaceClick = () => {
+  document.querySelector(".card").style.display = "block";
+};
+
+const handleEditProfileClick = () => {
+  document.querySelector(".form").style.display = "block";
+};
+
+const handleEditAvatarClick = () => {
+  document.querySelector(".avatar").style.display = "block";
+};
 
 function Header() {
   return (
