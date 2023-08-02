@@ -4,8 +4,8 @@ export default function PopupWithForm(props) {
   return (
     <>
       <fieldset className={`popup ${props.name}`}>
-        <form className={`form__container popup__${props.name}`} name={props.name} novalidate>
-          <a className="form__container-closed root__buttom-closed-active popup__closed">
+        <form className={`form__container popup__${props.name}`} name={props.name} noValidate>
+          <a onClick={props.handleClose} className="form__container-closed root__buttom-closed-active popup__closed">
             <img src={closeIcon} alt="ButtonClosed" />
           </a>
           <h2 className="form__container-title">{props.title}</h2>
