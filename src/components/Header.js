@@ -24,8 +24,8 @@ function Header(props) {
         <div className="header__line"></div>
       </header>
       <nav className="profile">
-        <div onClick={props.onEditAvatarClick} className="profile__content-img" style={{ backgroundImage: `url(${userAvatar})` }}>
-          <img className="profile__img profile__img-hover" name="avatar" alt="avatarusuario" />
+        <div onClick={props.onEditAvatarClick} className="profile__content-img">
+          <img className="profile__img profile__img-hover" name="avatar" alt="avatarusuario" src={userAvatar} />
         </div>
         <div className="profile__row">
           <h1 className="profile__row-name">{userName}</h1>
