@@ -1,12 +1,14 @@
-function ImagePopup() {
-  renderer(
-    <div class="zoom">
-      <a class="zoom__button-closed root__buttom-closed-active">
-        <img src="<%=require('./image/nav/CloseIcon.svg')%>" alt="ButtonClosed" />
+import closeIcon from "../image/nav/CloseIcon.svg";
+
+export default function ImagePopup(props) {
+  return (
+    <div className="zoom">
+      <a className="zoom__button-closed root__buttom-closed-active" onClick={props.onClose}>
+        <img src={closeIcon} alt="ButtonClosed" />
       </a>
-      <div class="zoom__content"></div>
-      <img class="zoom__img" alt="" />
-      <p class="zoom__text"></p>
+      <div className="zoom__content"></div>
+      <img className="zoom__img" alt={props.link} />
+      <p className="zoom__text">{props.name}</p>
     </div>
   );
 }
