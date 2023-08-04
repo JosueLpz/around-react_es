@@ -7,8 +7,8 @@ export default function ImagePopup(props) {
         <img src={closeIcon} alt="ButtonClosed" />
       </a>
       <div className="zoom__content"></div>
-      <img className="zoom__img" alt={props.link} />
-      <p className="zoom__text">{props.name}</p>
+      <img className="zoom__img" src={props.card.link} />
+      <p className="zoom__text">{props.card.name}</p>
     </div>
   );
 }

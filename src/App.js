@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      {openPopup === "zoom" && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
+      {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
       {openPopup === "avatar" && (
         <PopupWithForm title="Cambiar foto de perfil" name="avatar" button="Guardar" handleClose={() => handlePopupClose()}>
           <input id="avatar__url" className="popup__input" name="avatar" placeholder="Nuevo avatar" type="url" required />
