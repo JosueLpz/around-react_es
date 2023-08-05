@@ -7,18 +7,18 @@ export default function Card(props) {
   }
 
   return (
-    <article className="element__article" key={props.data._id} onClick={handleClick}>
-      <a className="element__article_delete root__button-hover-active">
-        <img src={buttonDelete} alt="buttondelete" />
-      </a>
-      <a className="element__article_img_button">
+    <article className="element__article" key={props.data._id}>
+      <button className="element__article_delete root__button-hover-active">
+        <img src={buttonDelete} alt="buttondelete" /*Boton de eliminar Card */ />
+      </button>
+      <button className="element__article_img_button" onClick={handleClick}>
         <img className="element__article_img" alt={props.data.name} src={props.data.link} />
-      </a>
+      </button>
       <div className="element__article_row">
         <h2 className="element__article_row_title">{props.data.name}</h2>
-        <a className="element__article_row_like root__button-hover-active">
+        <button className="element__article_row_like root__button-hover-active" /*Boton de Likes Card */>
           <img src={buttonLike} alt="buttonlike" />
-        </a>
+        </button>
         <p className="element__article_row_like_counter">{props.data.likes.length}</p>
       </div>
     </article>
