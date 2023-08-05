@@ -6,4 +6,7 @@
   right: 0px;
   cursor: pointer;
   transition: transform linear 0.5s;
+  border: none;
+  background: none;
+  outline: none;
 }
