@@ -29,14 +29,14 @@ function Header(props) {
         </div>
         <div className="profile__row">
           <h1 className="profile__row-name">{userName}</h1>
-          <a onClick={props.onEditProfileClick} className="profile__row-edit root__button-hover-active">
+          <button onClick={props.onEditProfileClick} className="profile__row-edit root__button-hover-active">
             <img src={editButton} alt="botonedit" />
-          </a>
+          </button>
         </div>
         <h2 className="profile__hobbie">{userDescription}</h2>
-        <a onClick={props.onAddPlaceClick} className="profile__button root__button-hover-active">
+        <button onClick={props.onAddPlaceClick} className="profile__button root__button-hover-active">
           <img className="profile__button" src={addButton} alt="BotonAdd" />
-        </a>
+        </button>
       </nav>
     </>
   );
