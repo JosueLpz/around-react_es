@@ -16,6 +16,12 @@ export default function Card(props) {
     display: isOwn ? "block" : "none",
   };
 
+  const isLiked = props.data.likes.some((like) => {
+    return like._id === dataUser._id;
+  });
+
+  const cardLikeButtonStyle = `element__article_row_like root__button-hover-active ${isLiked ? "element__article_row_like_active" : "element__article_row_like"}`;
+
   return (
     <article className="element__article" key={props.data._id}>
       <button type="button" className="element__article_delete root__button-hover-active" style={cardDeleteButtonStyle}>
@@ -26,7 +32,7 @@ export default function Card(props) {
       </button>
       <div className="element__article_row">
         <h2 className="element__article_row_title">{props.data.name}</h2>
-        <button type="button" className="element__article_row_like root__button-hover-active" /*Boton de Likes Card */>
+        <button type="button" className={cardLikeButtonStyle} /*Boton de Likes Card */>
           <img src={buttonLike} alt="buttonlike" />
         </button>
         <p className="element__article_row_like_counter">{props.data.likes.length}</p>
