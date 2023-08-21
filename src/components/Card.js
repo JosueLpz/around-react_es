@@ -4,7 +4,7 @@ import buttonLike from "../image/element/ButonLike.svg";
 import { CurrentUserContext } from "./contexts/CurrentUserContext";
 
 export default function Card(props) {
-  function handleClick() {
+  function handleZoomClick() {
     props.onCardClick(props.card);
   }
 
@@ -32,7 +32,7 @@ export default function Card(props) {
       <button type="button" className="element__article_delete root__button-hover-active" style={cardDeleteButtonStyle}>
         <img src={buttonDelete} alt="buttondelete" />
       </button>
-      <button type="button" className="element__article_img_button" onClick={handleClick}>
+      <button type="button" className="element__article_img_button" onClick={handleZoomClick}>
         <img className="element__article_img" alt={props.card.name} src={props.card.link} />
       </button>
       <div className="element__article_row">
