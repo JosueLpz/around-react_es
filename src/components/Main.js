@@ -29,11 +29,17 @@ function Main(props) {
     }
   }
 
+  function handleCardDelete(card) {
+    api.deleteInfoServer(`cards/${card._id}`).then(() => {
+      SetCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
   return (
     <>
       <main className="element">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={props.onCardClick} onCardLike={handleCardLike} />
+          <Card key={card._id} card={card} onCardClick={props.onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
         ))}
       </main>
     </>
