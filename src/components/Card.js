@@ -5,37 +5,42 @@ import { CurrentUserContext } from "./contexts/CurrentUserContext";
 
 export default function Card(props) {
   function handleClick() {
-    props.onCardClick(props.data);
+    props.onCardClick(props.card);
+  }
+
+  // recuerda enviar los datos a otro componente atraves de una funcion y su parametro!
+  function handleLikeClick() {
+    props.onCardLike(props.card);
   }
 
   const dataUser = useContext(CurrentUserContext);
 
-  const isOwn = props.data.owner._id === dataUser._id;
-
+  // forma 1, con un objeto, para desplegar el dysplay
+  const isOwn = props.card.owner._id === dataUser._id;
   const cardDeleteButtonStyle = {
     display: isOwn ? "block" : "none",
   };
 
-  const isLiked = props.data.likes.some((like) => {
+  // forma 2 con clases para modificar el elemento
+  const isLiked = props.card.likes.some((like) => {
     return like._id === dataUser._id;
   });
-
   const cardLikeButtonStyle = `element__article_row_like root__button-hover-active ${isLiked ? "element__article_row_like_active" : "element__article_row_like"}`;
 
   return (
-    <article className="element__article" key={props.data._id}>
+    <article className="element__article" key={props.card._id}>
       <button type="button" className="element__article_delete root__button-hover-active" style={cardDeleteButtonStyle}>
-        <img src={buttonDelete} alt="buttondelete" /*Boton de eliminar Card */ />
+        <img src={buttonDelete} alt="buttondelete" />
       </button>
       <button type="button" className="element__article_img_button" onClick={handleClick}>
-        <img className="element__article_img" alt={props.data.name} src={props.data.link} />
+        <img className="element__article_img" alt={props.card.name} src={props.card.link} />
       </button>
       <div className="element__article_row">
-        <h2 className="element__article_row_title">{props.data.name}</h2>
-        <button type="button" className={cardLikeButtonStyle} /*Boton de Likes Card */>
+        <h2 className="element__article_row_title">{props.card.name}</h2>
+        <button type="button" className={cardLikeButtonStyle} onClick={handleLikeClick}>
           <img src={buttonLike} alt="buttonlike" />
         </button>
-        <p className="element__article_row_like_counter">{props.data.likes.length}</p>
+        <p className="element__article_row_like_counter">{props.card.likes.length}</p>
       </div>
     </article>
   );
