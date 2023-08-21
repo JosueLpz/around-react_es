@@ -23,7 +23,8 @@ function Main(props) {
         SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       });
     } else {
-      api.deleteInfoServer(`cards/likes/${card._id}`)
+      api.deleteInfoServer(`cards/likes/${card._id}`).then((newCard) => {
+        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
       });
     }
   }
