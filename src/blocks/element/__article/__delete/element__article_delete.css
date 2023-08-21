@@ -1,5 +1,5 @@
 .element__article_delete {
-  /* display: none; */
+  display: none;
   position: absolute;
   right: 10px;
   top: 15px;
