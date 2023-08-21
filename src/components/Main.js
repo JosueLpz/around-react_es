@@ -14,14 +14,18 @@ function Main(props) {
   }, []);
 
   function handleCardLike(card) {
-    console.log("🚀 ~ file: Main.js:17 ~ handleCardLike ~ card:", card);
     const isLiked = card.likes.some((like) => {
       return like._id === dataUser._id;
     });
-    console.log("🚀 ~ file: Main.js:22 ~ isLiked ~ isLiked:", isLiked);
-    // api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-    //   SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    // });
+
+    if (!isLiked) {
+      api.putLikesCard(`cards/likes/${card._id}`).then((newCard) => {
+        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      });
+    } else {
+      api.deleteInfoServer(`cards/likes/${card._id}`)
+      });
+    }
   }
 
   return (
