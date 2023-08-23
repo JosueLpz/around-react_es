@@ -4,16 +4,17 @@ import buttonLike from "../image/element/ButonLike.svg";
 import { CurrentUserContext } from "./contexts/CurrentUserContext";
 
 export default function Card(props) {
+  const dataUser = useContext(CurrentUserContext);
+  // recuerda enviar los datos a otro componente atraves de una funcion y su parametro!
   function handleZoomClick() {
     props.onCardClick(props.card);
   }
-
-  // recuerda enviar los datos a otro componente atraves de una funcion y su parametro!
   function handleLikeClick() {
     props.onCardLike(props.card);
   }
-
-  const dataUser = useContext(CurrentUserContext);
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
 
   // forma 1, con un objeto, para desplegar el dysplay
   const isOwn = props.card.owner._id === dataUser._id;
@@ -29,7 +30,7 @@ export default function Card(props) {
 
   return (
     <article className="element__article" key={props.card._id}>
-      <button type="button" className="element__article_delete root__button-hover-active" style={cardDeleteButtonStyle}>
+      <button type="button" className="element__article_delete root__button-hover-active" style={cardDeleteButtonStyle} onClick={handleDeleteClick}>
         <img src={buttonDelete} alt="buttondelete" />
       </button>
       <button type="button" className="element__article_img_button" onClick={handleZoomClick}>
