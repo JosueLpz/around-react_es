@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./components/Header.js";
 import Main from "./components/Main.js";
 import Footer from "./components/Footer.js";
+import EditProfilePopup from "./components/EditProfilePopup.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import ImagePopup from "./components/ImagePopup.js";
 import api from "./utils/api.js";
@@ -31,6 +32,8 @@ function App() {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
+        <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} />
+
         {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
         {openPopup === "avatar" && (
           <PopupWithForm title="Cambiar foto de perfil" name="avatar" button="Guardar" handleClose={() => handlePopupClose()}>
@@ -44,14 +47,6 @@ function App() {
             <span className="card__title-error card__element-error"></span>
             <input id="card__url" name="link" placeholder="Enlace a la imagen" type="url" className="card__element-link-img popup__input" required />
             <span className="card__url-error card__element-error"></span>
-          </PopupWithForm>
-        )}
-        {openPopup === "form" && (
-          <PopupWithForm title="Editar perfil" name="form" button="Guardar" handleClose={() => handlePopupClose()}>
-            <input id="form__title" name="title" type="text" className="form__container-name popup__input" maxLength="40" minLength="2" required />
-            <span className="form__title-error form__container-error"></span>
-            <input id="form__hobby" name="hobby" type="text" className="form__container-hobby popup__input" maxLength="200" minLength="2" required />
-            <span className="form__hobby-error form__container-error"></span>
           </PopupWithForm>
         )}
         {openPopup === "confirm" && <PopupWithForm title="¿Estás seguro?" name="confirm" button="Si" handleClose={() => handlePopupClose()}></PopupWithForm>}
