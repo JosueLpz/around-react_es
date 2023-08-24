@@ -26,7 +26,9 @@ export default function Card(props) {
   const isLiked = props.card.likes.some((like) => {
     return like._id === dataUser._id;
   });
-  const cardLikeButtonStyle = `element__article_row_like root__button-hover-active ${isLiked ? "element__article_row_like_active" : "element__article_row_like"}`;
+  const cardLikeButtonStyle = `element__article_row_like root__button-hover-active ${
+    isLiked ? "element__article_row_like_active" : "element__article_row_like"
+  }`;
 
   return (
     <article className="element__article" key={props.card._id}>

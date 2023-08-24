@@ -20,11 +20,15 @@ function Main(props) {
 
     if (!isLiked) {
       api.putLikesCard(`cards/likes/${card._id}`).then((newCard) => {
-        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        SetCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
       });
     } else {
       api.deleteInfoServer(`cards/likes/${card._id}`).then((newCard) => {
-        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+        SetCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
       });
     }
   }
@@ -39,7 +43,13 @@ function Main(props) {
     <>
       <main className="element">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={props.onCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={props.onCardClick}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+          />
         ))}
       </main>
     </>
