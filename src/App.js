@@ -8,7 +8,7 @@ import ImagePopup from "./components/ImagePopup.js";
 import api from "./utils/api.js";
 import { CurrentUserContext } from "./components/contexts/CurrentUserContext";
 
-function App() {
+function App(props) {
   const [openPopup, setOpenPopup] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -29,42 +29,27 @@ function App() {
     });
   }, []);
 
+  function handleUpdateUser() {
+    api.updateUserProfile("users/me").then((data) => {
+      console.log("🚀 ~ file: App.js:42 ~ .then ~ data:", data);
+      SetCurrentUser(data);
+    });
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} />
+        <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
 
-        {selectedCard !== null && (
-          <ImagePopup
-            card={selectedCard}
-            onClose={() => setSelectedCard(null)}
-          />
-        )}
+        {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
         {openPopup === "avatar" && (
-          <PopupWithForm
-            title="Cambiar foto de perfil"
-            name="avatar"
-            button="Guardar"
-            handleClose={() => handlePopupClose()}
-          >
-            <input
-              id="avatar__url"
-              className="popup__input"
-              name="avatar"
-              placeholder="Nuevo avatar"
-              type="url"
-              required
-            />
+          <PopupWithForm title="Cambiar foto de perfil" name="avatar" button="Guardar" handleClose={() => handlePopupClose()}>
+            <input id="avatar__url" className="popup__input" name="avatar" placeholder="Nuevo avatar" type="url" required />
             <span className="avatar__url-error avatar__container-error"></span>
           </PopupWithForm>
         )}
         {openPopup === "card" && (
-          <PopupWithForm
-            title="Nuevo lugar"
-            name="card"
-            button="Crear"
-            handleClose={() => handlePopupClose()}
-          >
+          <PopupWithForm title="Nuevo lugar" name="card" button="Crear" handleClose={() => handlePopupClose()}>
             <input
               id="card__title"
               name="name"
@@ -76,24 +61,12 @@ function App() {
               required
             />
             <span className="card__title-error card__element-error"></span>
-            <input
-              id="card__url"
-              name="link"
-              placeholder="Enlace a la imagen"
-              type="url"
-              className="card__element-link-img popup__input"
-              required
-            />
+            <input id="card__url" name="link" placeholder="Enlace a la imagen" type="url" className="card__element-link-img popup__input" required />
             <span className="card__url-error card__element-error"></span>
           </PopupWithForm>
         )}
         {openPopup === "confirm" && (
-          <PopupWithForm
-            title="¿Estás seguro?"
-            name="confirm"
-            button="Si"
-            handleClose={() => handlePopupClose()}
-          ></PopupWithForm>
+          <PopupWithForm title="¿Estás seguro?" name="confirm" button="Si" handleClose={() => handlePopupClose()}></PopupWithForm>
         )}
         <div className="page">
           <Header

@@ -20,15 +20,19 @@ export default function EditProfilePopup(props) {
     setDescription(dataUser.about);
   }, [dataUser]);
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    props.onUpdateUser({
+      name,
+      about: description,
+    });
+  }
+
   return (
     <>
       {props.isOpen === "form" && (
-        <PopupWithForm
-          title="Editar perfil"
-          name="form"
-          button="Guardar"
-          handleClose={props.onClose}
-        >
+        <PopupWithForm title="Editar perfil" name="form" button="Guardar" handleClose={props.onClose} onSubmit={handleSubmit}>
           <input
             value={name}
             onChange={handleChangeName}
