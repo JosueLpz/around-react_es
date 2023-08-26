@@ -30,10 +30,9 @@ function App() {
   }, []);
 
   function handleUpdateUser(updatedUserData) {
-    console.log("🚀 ~ file: App.js:33 ~ handleUpdateUser ~ updatedUserData:", updatedUserData);
     api.updateUserProfile("users/me", JSON.stringify(updatedUserData)).then((data) => {
-      console.log("🚀 ~ file: App.js:35 ~ api.updateUserProfile ~ data:", data);
-      // SetCurrentUser(data);
+      SetCurrentUser(data);
+      handlePopupClose();
     });
   }
 
