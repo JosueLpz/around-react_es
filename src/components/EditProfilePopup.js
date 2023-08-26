@@ -22,7 +22,7 @@ export default function EditProfilePopup(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
+    // * Esta es la funcion handleUpdateUser y estas enviando como ARGUMENTO los datos de los inputs de el form como objeto para enviar la api
     props.onUpdateUser({
       name,
       about: description,

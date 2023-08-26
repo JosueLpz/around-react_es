@@ -8,7 +8,7 @@ import ImagePopup from "./components/ImagePopup.js";
 import api from "./utils/api.js";
 import { CurrentUserContext } from "./components/contexts/CurrentUserContext";
 
-function App(props) {
+function App() {
   const [openPopup, setOpenPopup] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -29,10 +29,11 @@ function App(props) {
     });
   }, []);
 
-  function handleUpdateUser() {
-    api.updateUserProfile("users/me").then((data) => {
-      console.log("🚀 ~ file: App.js:42 ~ .then ~ data:", data);
-      SetCurrentUser(data);
+  function handleUpdateUser(updatedUserData) {
+    console.log("🚀 ~ file: App.js:33 ~ handleUpdateUser ~ updatedUserData:", updatedUserData);
+    api.updateUserProfile("users/me", JSON.stringify(updatedUserData)).then((data) => {
+      console.log("🚀 ~ file: App.js:35 ~ api.updateUserProfile ~ data:", data);
+      // SetCurrentUser(data);
     });
   }
 
