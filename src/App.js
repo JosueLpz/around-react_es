@@ -3,6 +3,7 @@ import Header from "./components/Header.js";
 import Main from "./components/Main.js";
 import Footer from "./components/Footer.js";
 import EditProfilePopup from "./components/EditProfilePopup.js";
+import EditAvatarPopup from "./components/EditAvatarPopup.js";
 import PopupWithForm from "./components/PopupWithForm.js";
 import ImagePopup from "./components/ImagePopup.js";
 import api from "./utils/api.js";
@@ -40,14 +41,8 @@ function App() {
     <>
       <CurrentUserContext.Provider value={currentUser}>
         <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
-
+        <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} />
         {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
-        {openPopup === "avatar" && (
-          <PopupWithForm title="Cambiar foto de perfil" name="avatar" button="Guardar" handleClose={() => handlePopupClose()}>
-            <input id="avatar__url" className="popup__input" name="avatar" placeholder="Nuevo avatar" type="url" required />
-            <span className="avatar__url-error avatar__container-error"></span>
-          </PopupWithForm>
-        )}
         {openPopup === "card" && (
           <PopupWithForm title="Nuevo lugar" name="card" button="Crear" handleClose={() => handlePopupClose()}>
             <input
