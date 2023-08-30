@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "./components/Header.js";
 import Main from "./components/Main.js";
 import Footer from "./components/Footer.js";
@@ -11,8 +11,38 @@ import { CurrentUserContext } from "./components/contexts/CurrentUserContext";
 
 function App() {
   //*Manejo de la lista de cartas
+  const dataUser = useContext(CurrentUserContext);
+  const [cards, SetCards] = useState([]);
 
-  //*Selector de imagenes de cartas
+  useEffect(() => {
+    api.getInfoServer("cards").then((cards) => {
+      SetCards(cards);
+    });
+  }, []);
+
+  //*metodos de cartas borrar y like
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((like) => {
+      return like._id === dataUser._id;
+    });
+
+    if (!isLiked) {
+      api.putLikesCard(`cards/likes/${card._id}`).then((newCard) => {
+        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      });
+    } else {
+      api.deleteInfoServer(`cards/likes/${card._id}`).then((newCard) => {
+        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      });
+    }
+  }
+
+  function handleCardDelete(card) {
+    api.deleteInfoServer(`cards/${card._id}`).then(() => {
+      SetCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
   const [selectedCard, setSelectedCard] = useState(null);
   function handleCardClick(card) {
     setSelectedCard(card);
@@ -80,7 +110,7 @@ function App() {
             onAddPlaceClick={() => handlePopupOpen("card")}
             onEditAvatarClick={() => handlePopupOpen("avatar")}
           />
-          <Main onCardClick={handleCardClick} />
+          <Main onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
           <Footer />
         </div>
       </CurrentUserContext.Provider>
