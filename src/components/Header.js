@@ -7,12 +7,6 @@ import { CurrentUserContext } from "./contexts/CurrentUserContext";
 function Header(props) {
   const meUser = useContext(CurrentUserContext);
 
-  const contentAvatar = useRef();
-
-  useEffect(() => {
-    console.log("Content Avatar src:", contentAvatar.current.src);
-  });
-
   return (
     <>
       <header className="header">
@@ -21,7 +15,7 @@ function Header(props) {
       </header>
       <nav className="profile">
         <div onClick={props.onEditAvatarClick} className="profile__content-img">
-          <img className="profile__img profile__img-hover" name="avatar" alt="avatarusuario" ref={contentAvatar} src={meUser.avatar} />
+          <img className="profile__img profile__img-hover" name="avatar" alt="avatarusuario" src={meUser.avatar} />
         </div>
         <div className="profile__row">
           <h1 className="profile__row-name">{meUser.name}</h1>

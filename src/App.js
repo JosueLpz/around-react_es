@@ -37,11 +37,18 @@ function App() {
     });
   }
 
+  function handleUpdateAvatar(updatedUserData) {
+    api.updateUserProfile("users/me/avatar", JSON.stringify(updatedUserData)).then((data) => {
+      SetCurrentUser(data);
+      handlePopupClose();
+    });
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
         <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
-        <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} />
+        <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} onUpdateAvatar={handleUpdateAvatar} />
         {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
         {openPopup === "card" && (
           <PopupWithForm title="Nuevo lugar" name="card" button="Crear" handleClose={() => handlePopupClose()}>
