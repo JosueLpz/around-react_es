@@ -10,19 +10,23 @@ import api from "./utils/api.js";
 import { CurrentUserContext } from "./components/contexts/CurrentUserContext";
 
 function App() {
-  const [openPopup, setOpenPopup] = useState(null);
-  const [selectedCard, setSelectedCard] = useState(null);
+  //*Manejo de la lista de cartas
 
+  //*Selector de imagenes de cartas
+  const [selectedCard, setSelectedCard] = useState(null);
   function handleCardClick(card) {
     setSelectedCard(card);
   }
+
+  // * Apertira y ciere de formularios
+  const [openPopup, setOpenPopup] = useState(null);
   function handlePopupOpen(popupName) {
     setOpenPopup(popupName);
   }
   function handlePopupClose() {
     setOpenPopup(null);
   }
-
+  // * Solicitudes de apis de profile y sus manejos de cambios de estado
   const [currentUser, SetCurrentUser] = useState([]);
   useEffect(() => {
     api.getInfoServer("users/me").then((data) => {
