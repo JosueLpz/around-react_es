@@ -10,45 +10,7 @@ import api from "./utils/api.js";
 import { CurrentUserContext } from "./components/contexts/CurrentUserContext";
 
 function App() {
-  //*Manejo de la lista de cartas
-  const dataUser = useContext(CurrentUserContext);
-  const [cards, SetCards] = useState([]);
-
-  useEffect(() => {
-    api.getInfoServer("cards").then((cards) => {
-      SetCards(cards);
-    });
-  }, []);
-
-  //*metodos de cartas borrar y like
-  function handleCardLike(card) {
-    const isLiked = card.likes.some((like) => {
-      return like._id === dataUser._id;
-    });
-
-    if (!isLiked) {
-      api.putLikesCard(`cards/likes/${card._id}`).then((newCard) => {
-        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-      });
-    } else {
-      api.deleteInfoServer(`cards/likes/${card._id}`).then((newCard) => {
-        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-      });
-    }
-  }
-
-  function handleCardDelete(card) {
-    api.deleteInfoServer(`cards/${card._id}`).then(() => {
-      SetCards((state) => state.filter((c) => c._id !== card._id));
-    });
-  }
-
-  const [selectedCard, setSelectedCard] = useState(null);
-  function handleCardClick(card) {
-    setSelectedCard(card);
-  }
-
-  // * Apertira y ciere de formularios
+  // * pupop de los formularios
   const [openPopup, setOpenPopup] = useState(null);
   function handlePopupOpen(popupName) {
     setOpenPopup(popupName);
@@ -76,6 +38,45 @@ function App() {
       SetCurrentUser(data);
       handlePopupClose();
     });
+  }
+
+  //*Manejo de la lista de cartas
+
+  const [cards, SetCards] = useState([]);
+
+  useEffect(() => {
+    api.getInfoServer("cards").then((cards) => {
+      SetCards(cards);
+    });
+  }, []);
+
+  //*metodos de cartas borrar y like
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((like) => {
+      return like._id === currentUser._id;
+    });
+
+    if (!isLiked) {
+      api.putLikesCard(`cards/likes/${card._id}`).then((newCard) => {
+        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      });
+    } else {
+      api.deleteInfoServer(`cards/likes/${card._id}`).then((newCard) => {
+        SetCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      });
+    }
+  }
+
+  function handleCardDelete(card) {
+    api.deleteInfoServer(`cards/${card._id}`).then(() => {
+      SetCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
+  // * popup de las cartas
+  const [selectedCard, setSelectedCard] = useState(null);
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   return (
