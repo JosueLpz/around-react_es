@@ -10,22 +10,24 @@ function Main(props) {
   const userData = useContext(CurrentUserContext);
 
   return (
-    <main className="element">
+    <>
       <EditProfilePopup isOpen={props.isOpen} onClose={props.onClose} onUpdateUser={props.onUpdateUser} />
       <EditAvatarPopup isOpen={props.isOpen} onClose={props.onClose} onUpdateAvatar={props.onUpdateAvatar} />
       <AddPlacePopup isOpen={props.isOpen} onClose={props.onClose} onUpdateCard={props.onUpdateCard} />
       {props.selectedCard !== null && <ImagePopup card={props.selectedCard} onClose={() => props.setSelectedCard(null)} />}
-      {props.cards.map((card) => (
-        <Card
-          key={card._id}
-          card={card}
-          onCardClick={props.onCardClick}
-          onCardLike={props.onCardLike}
-          onCardDelete={props.onCardDelete}
-          userData={userData}
-        />
-      ))}
-    </main>
+      <main className="element">
+        {props.cards.map((card) => (
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={props.onCardClick}
+            onCardLike={props.onCardLike}
+            onCardDelete={props.onCardDelete}
+            userData={userData}
+          />
+        ))}
+      </main>
+    </>
   );
 }
 
