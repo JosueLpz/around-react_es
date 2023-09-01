@@ -2,11 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Header from "./Header.js";
 import Main from "./Main.js";
 import Footer from "./Footer.js";
-import PopupWithForm from "./PopupWithForm.js";
-import EditProfilePopup from "./EditProfilePopup.js";
-import EditAvatarPopup from "./EditAvatarPopup.js";
-import AddPlacePopup from "./AddPlacePopup.js";
-import ImagePopup from "./ImagePopup.js";
+
 import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -90,20 +86,24 @@ function App() {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
-        <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} onUpdateAvatar={handleUpdateAvatar} />
-        <AddPlacePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateCard={handleAddPlaceSubmit} />
-        {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
-        {openPopup === "confirm" && (
-          <PopupWithForm title="¿Estás seguro?" name="confirm" button="Si" handleClose={() => handlePopupClose()}></PopupWithForm>
-        )}
-
         <Header
           onEditProfileClick={() => handlePopupOpen("form")}
           onAddPlaceClick={() => handlePopupOpen("card")}
           onEditAvatarClick={() => handlePopupOpen("avatar")}
         />
-        <Main onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
+        <Main
+          isOpen={openPopup}
+          onClose={handlePopupClose}
+          onUpdateUser={handleUpdateUser}
+          onUpdateAvatar={handleUpdateAvatar}
+          onUpdateCard={handleAddPlaceSubmit}
+          onCardClick={handleCardClick}
+          selectedCard={selectedCard}
+          setSelectedCard={setSelectedCard}
+          cards={cards}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
+        />
         <Footer />
       </CurrentUserContext.Provider>
     </>
