@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import buttonDelete from "../image/element/ButtonDelete.svg";
 import buttonLike from "../image/element/ButonLike.svg";
-import { CurrentUserContext } from "./contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function Card(props) {
   const dataUser = useContext(CurrentUserContext);

@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import Header from "./components/Header.js";
-import Main from "./components/Main.js";
-import Footer from "./components/Footer.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import EditProfilePopup from "./components/EditProfilePopup.js";
-import EditAvatarPopup from "./components/EditAvatarPopup.js";
-import AddPlacePopup from "./components/AddPlacePopup.js";
-import ImagePopup from "./components/ImagePopup.js";
-import api from "./utils/api.js";
-import { CurrentUserContext } from "./components/contexts/CurrentUserContext";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
+import PopupWithForm from "./PopupWithForm.js";
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
+import ImagePopup from "./ImagePopup.js";
+import api from "../utils/api.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
   // * pupop de los formularios

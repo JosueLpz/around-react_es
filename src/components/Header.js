@@ -2,7 +2,7 @@ import { useContext, useRef, useEffect } from "react";
 import header__logo from "../image/header/header__logo.svg";
 import editButton from "../image/header/EditButton.svg";
 import addButton from "../image/nav/Addbutton.svg";
-import { CurrentUserContext } from "./contexts/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Header(props) {
   const meUser = useContext(CurrentUserContext);
