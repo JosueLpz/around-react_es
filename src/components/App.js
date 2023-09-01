@@ -90,6 +90,7 @@ function App() {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
+        <Main onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
         <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} onUpdateAvatar={handleUpdateAvatar} />
         <AddPlacePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateCard={handleAddPlaceSubmit} />
@@ -103,7 +104,6 @@ function App() {
             onAddPlaceClick={() => handlePopupOpen("card")}
             onEditAvatarClick={() => handlePopupOpen("avatar")}
           />
-          <Main onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
           <Footer />
         </div>
       </CurrentUserContext.Provider>
