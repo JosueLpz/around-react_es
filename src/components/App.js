@@ -90,7 +90,6 @@ function App() {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <Main onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
         <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} onUpdateAvatar={handleUpdateAvatar} />
         <AddPlacePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateCard={handleAddPlaceSubmit} />
@@ -98,14 +97,13 @@ function App() {
         {openPopup === "confirm" && (
           <PopupWithForm title="¿Estás seguro?" name="confirm" button="Si" handleClose={() => handlePopupClose()}></PopupWithForm>
         )}
-        <div className="page">
-          <Header
-            onEditProfileClick={() => handlePopupOpen("form")}
-            onAddPlaceClick={() => handlePopupOpen("card")}
-            onEditAvatarClick={() => handlePopupOpen("avatar")}
-          />
-          <Footer />
-        </div>
+        <Header
+          onEditProfileClick={() => handlePopupOpen("form")}
+          onAddPlaceClick={() => handlePopupOpen("card")}
+          onEditAvatarClick={() => handlePopupOpen("avatar")}
+        />
+        <Main onCardClick={handleCardClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} />
+        <Footer />
       </CurrentUserContext.Provider>
     </>
   );
