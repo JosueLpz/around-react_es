@@ -34,8 +34,8 @@ function App() {
     });
   }
 
-  function handleUpdateAvatar(updatedUserData) {
-    api.updateUserProfile("users/me/avatar", JSON.stringify(updatedUserData)).then((data) => {
+  function handleUpdateAvatar(updatedAvatarData) {
+    api.updateUserProfile("users/me/avatar", JSON.stringify(updatedAvatarData)).then((data) => {
       SetCurrentUser(data);
       handlePopupClose();
     });
@@ -50,6 +50,13 @@ function App() {
       SetCards(cards);
     });
   }, []);
+  // * api post para crear carta!
+  function handleAddPlaceSubmit(updatedCardData) {
+    api.postCreateCards("cards", JSON.stringify(updatedCardData)).then((data) => {
+      SetCards([data, ...cards]);
+      handlePopupClose();
+    });
+  }
 
   //*metodos de cartas borrar y like
   function handleCardLike(card) {
@@ -85,7 +92,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <EditProfilePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={openPopup} onClose={handlePopupClose} onUpdateAvatar={handleUpdateAvatar} />
-        <AddPlacePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateAvatar={handleUpdateAvatar} />
+        <AddPlacePopup isOpen={openPopup} onClose={handlePopupClose} onUpdateCard={handleAddPlaceSubmit} />
         {selectedCard !== null && <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />}
         {openPopup === "confirm" && (
           <PopupWithForm title="¿Estás seguro?" name="confirm" button="Si" handleClose={() => handlePopupClose()}></PopupWithForm>

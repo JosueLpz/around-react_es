@@ -1,11 +1,32 @@
+import React, { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+
+  function handleChangeTitle(e) {
+    setTitle(e.target.value);
+  }
+  function handleChangeUrl(e) {
+    setUrl(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onUpdateCard({
+      name: title,
+      link: url,
+    });
+  }
+
   return (
     <>
       {props.isOpen === "card" && (
-        <PopupWithForm title="Nuevo lugar" name="card" button="Crear" handleClose={props.onClose}>
+        <PopupWithForm title="Nuevo lugar" name="card" button="Crear" handleClose={props.onClose} onSubmit={handleSubmit}>
           <input
+            value={title}
+            onChange={handleChangeTitle}
             id="card__title"
             name="name"
             placeholder="Titulo"
@@ -16,7 +37,16 @@ function AddPlacePopup(props) {
             required
           />
           <span className="card__title-error card__element-error"></span>
-          <input id="card__url" name="link" placeholder="Enlace a la imagen" type="url" className="card__element-link-img popup__input" required />
+          <input
+            value={url}
+            onChange={handleChangeUrl}
+            id="card__url"
+            name="link"
+            placeholder="Enlace a la imagen"
+            type="url"
+            className="card__element-link-img popup__input"
+            required
+          />
           <span className="card__url-error card__element-error"></span>
         </PopupWithForm>
       )}
