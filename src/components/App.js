@@ -97,6 +97,7 @@ function App() {
         {openPopup === "confirm" && (
           <PopupWithForm title="¿Estás seguro?" name="confirm" button="Si" handleClose={() => handlePopupClose()}></PopupWithForm>
         )}
+
         <Header
           onEditProfileClick={() => handlePopupOpen("form")}
           onAddPlaceClick={() => handlePopupOpen("card")}
