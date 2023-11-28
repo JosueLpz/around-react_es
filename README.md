@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+## 1. Creación de Rutas y Redirección
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+El proyecto establece que toda la funcionalidad está disponible en la ruta raíz (/) solo para usuarios autorizados. Se implementan dos rutas adicionales en el archivo `auth.js`:
 
-## Available Scripts
+- `/signup`: Para el registro de usuarios.
+- `/signin`: Para la autorización de usuarios.
 
-In the project directory, you can run:
+Si un usuario no autorizado visita la aplicación, será redirigido a la página de inicio de sesión, independientemente de la ruta de acceso.
 
-### `npm start`
+## 2. Creación de Componentes de React
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Se propone revisar y ajustar el código JSX y CSS para crear la interfaz de usuario. Los nuevos componentes incluyen:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- `Login`: Para la autorización de usuarios con variables de estado.
+- `Register`: Para el registro de usuarios con variables de estado.
+- `ProtectedRoute`: Protege la ruta `/` para evitar el acceso no autorizado.
+- `InfoTooltip`: Una ventana modal que informa al usuario sobre el éxito del registro.
 
-### `npm test`
+## 3. Conexión con el Backend de TripleTen
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+La funcionalidad principal se conecta al backend de TripleTen utilizando la URL base `https://register.nomoreparties.co`. Se protegen todas las URLs con autorización, excepto `/signup` y `/signin`. Se crea un módulo `auth.js` para contener los métodos necesarios de registro y autorización, importándolo en `App.js` según sea necesario.
 
-### `npm run build`
+## 4. Implementación de la Autenticación del Usuario
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Registro (/signup)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Método: POST
+- Encabezados: `"Content-Type": "application/json"`
+- Body: `"password": "somepassword", "email": "email@email.com"`
+- Respuesta exitosa: `{"data": {"_id": "5f5204c577488bcaa8b7bdf2", "email": "email@email.com"}}`
+- Códigos de error: `400` si uno de los campos se rellenó incorrectamente.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Autorización (/signin)
 
-### `npm run eject`
+- Método: POST
+- Encabezados: `"Content-Type": "application/json"`
+- Body: `{"password": "dsfsdfsdfsdf", "email": "email@email.com"}`
+- Ejemplo de respuesta exitosa: `{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."}`
+- Códigos de error: `400` si no se proporcionaron campos, `401` si no se encontró al usuario con el correo especificado.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Comprobar Validez del Token (/users/me)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Método: GET
+- Encabezados: `{"Content-Type": "application/json", "Authorization": "Bearer {Your JWT}"}`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Ejemplo de respuesta exitosa: `{"data": {"_id":"1f525cf06e02630312f3fed7", "email":"email@email.com"}}`
+Códigos de error: `400` si el token no se proporcionó o se proporcionó en formato incorrecto, `401` si el token es inválido.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 5. Implementación de Almacenamiento Local y Manipulación de Tokens
 
-## Learn More
+Se emplea localStorage para almacenar y acceder al token, permitiendo a los usuarios evitar iniciar sesión en visitas repetidas. Se verifica la validez del token al enviar solicitudes a `/users/me`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 6. Análisis de Seguridad del Sitio
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Se realiza un análisis de seguridad según la lista de control del sprint correspondiente, con planes para mejoras en el próximo sprint.
 
-### Code Splitting
+## 7. Lista de Métodos Utilizados en la Aplicación
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Al completar el proyecto, se genera una lista de todos los métodos utilizados en la aplicación de React. Se identifican aquellos que deben modificarse para crear una nueva API unificada en el próximo sprint.
